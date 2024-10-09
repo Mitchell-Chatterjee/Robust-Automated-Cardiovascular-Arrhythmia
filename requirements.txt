@@ -1,12 +1,14 @@
 apex==0.9.10dev
-h5py==3.8.0
+einops==0.8.0
+h5py==3.10.0
 kornia==0.7.1
-matplotlib==3.7.1
+matplotlib==3.7.2
 numpy==1.23.5
 pandas==2.0.2
 scikit_learn==1.2.2
 scikit_multilearn==0.2.0
 scipy==1.10.1
+ray==2.4.0
 timm==0.9.12
 torch==2.0.1
 torcheval==0.0.7

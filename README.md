@@ -1,11 +1,9 @@
 # Toward Robust Automated Cardiovascular Arrhythmia Detection using Self-supervised Learning and 1-Dimensional Vision Transformers
 ***
 
-This is the official code repository accompanying our paper titled **Toward Robust Automated Cardiovascular Arrhythmia Detection using Self-supervised Learning and 1-Dimensional Vision Transformers.**
+This is the official code repository accompanying our paper titled **[Toward Robust Automated Cardiovascular Arrhythmia Detection using Self-supervised Learning and 1-Dimensional Vision Transformers](https://www.techrxiv.org/doi/full/10.36227/techrxiv.172866031.13011158).**
 
-For a detailed description of technical details and experimental results, please refer to our paper:
-
-Link to paper.
+For a detailed description of technical details and experimental results, please refer the publication.
 
 This work is also meant to support a wide range of use cases and serve as foundation for future work in the field.
 For this purpose, the codebase has been designed with layers of abstraction to ensure future work can benefit from its generality.
@@ -13,6 +11,50 @@ For this purpose, the codebase has been designed with layers of abstraction to e
 All scripts were created for the [Narval Cluster - Digital Alliance Canada](https://docs.alliancecan.ca/wiki/Narval/en) and use
 SLURM scheduler by default. To use the scripts, replace the arguments `#SBATCH --account=def-x` and `/path/to/` with the correct
 account and path information.
+
+# Contributions and Key Designs
+***
+
+## Contributions
+The largest publicly available model to date (85.3 million parameters), pre-trained on 8 million unlabelled ECG samples 
+from the Ribeiro dataset. The provided foundational model can be fine-tuned to any task leveraging ECG data.
+
+## Architecture
+![](images/PatchECG_overview.png)
+*Overview of PatchECG and Masked Patch Modelling (Only 6 of the original 12 leads are shown due to size constraints). 
+(1) The original ECG signal is broken up into patches of length 50 by default. (2) The signal is partitioned into patches; 
+by default, 40\% of the patches are masked (red), and the rest are left unmasked (blue). (3) Patches are linearly 
+projected to the model dimension $d_{model}$ using a linear embedding. During pre-training, masked patches are replaced 
+with a learnable mask token $\textbf{[\text{M}]}$. They are then fed into the Transformer backbone. (4) The task-specific 
+MLP $g$ is trained to reconstruct the corrupted patches based on the output of the Transformer. (5) The entire signal is 
+reconstructed from the corrupted input. The difference between an early reconstruction (top) and a late reconstruction 
+(bottom) shows the progress of the PatchECG model in learning a robust representation of ECG data. (6) The pre-trained 
+backbone network is used, without masking, for fine-tuning and inference by replacing the pre-training head $g$ with a 
+new task-specific MLP $f$.*
+
+## Multiple types of masking
+In each pre-training batch we include three types of masking to ensure the model learns a robust representation of ECG data
+
+
+|       Standard Per-lead Masking       |      Per-lead Randomized Masking      |    All-lead Randomized Masking     |
+|:-------------------------------------:|:-------------------------------------:|:----------------------------------:|
+| ![](images/same_masking_per_lead.png) | ![](images/diff_masking_per_lead.png) | ![](images/random_masking_all.png) |
+
+
+# Results
+***
+
+## Results on PTB-XL
+![](images/Results on PTB-XL.png)
+
+## Results on Unified Dataset (CINC-2020 and Chapman-Shaoxing Datasets)
+![](images/Results on Unified.png)
+
+# Results on STEMI (PTB-XL)
+![](images/Results on STEMI.png)
+
+# Efficiency and Capacity
+***
 
 
 # Pre-processing
@@ -84,8 +126,9 @@ the program will also output a plot at regular intervals for manual interpretati
 the original, the reconstruction, and the reconstruction overlayed with the original. The following examples are single-shot reconstructions from the PatchECG model
 pre-trained on Ribeiro and applied to the Unified Dataset to test hierarchical pre-training.
 
-![alt text](images/Original%20Epoch=0.png)
-
+|             Original             |            Reconstruction             |            Reconstruction Overlayed with Original             |
+|:--------------------------------:|:-------------------------------------:|:-------------------------------------------------------------:|
+| ![](images/Original Epoch=0.png) | ![](images/Reconstructed Epoch=0.png) | ![](images/Reconstructed Overlayed with Original Epoch=0.png) |
 
 ## Fine-tuning
 ***
@@ -129,3 +172,13 @@ To execute hyperparameter tuning, run the script `src/scripts/multi-gpu/hyperpar
 
 ## Adding new models
 ***
+
+# Citation
+***
+If you find this repo useful in your research, please consider citing our paper as follows:
+```
+@article{chatterjee2024toward,
+  title={Toward Robust Automated Cardiovascular Arrhythmia Detection using Self-supervised Learning and 1-Dimensional Vision Transformers},
+  author={Chatterjee, Mitchell and Chan, Adrian and Komeili, Majid}
+}
+```
