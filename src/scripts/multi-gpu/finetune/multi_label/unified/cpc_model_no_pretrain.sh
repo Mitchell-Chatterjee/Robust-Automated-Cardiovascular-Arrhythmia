@@ -30,7 +30,7 @@ cp -R /path/to/Unified_Test_Runs/* "$SLURM_TMPDIR"
 for i in {1..10}
 do
   # Torch run will naturally access the last checkpoint if interrupted
-  python -m src.patchtst_finetune \
+  python -m src.patchECG_finetune \
             --lr=0.001 \
             --save_every=20 \
             --root_path="$SLURM_TMPDIR"/Unified_Dataset_"$i"/Unified_Dataset \

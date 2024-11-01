@@ -28,7 +28,7 @@ cd /path/to/Masters-Research/ || exit
 cp -R /path/to/Unified_Dataset "$SLURM_TMPDIR"
 
 # Torch run will naturally access the last checkpoint if interrupted
-srun python -m src.patchtst_pretrain \
+srun python -m src.patchECG_pretrain \
           --init_method tcp://$MAIN_NODE:3456   \
           --world_size $((SLURM_NTASKS_PER_NODE * SLURM_JOB_NUM_NODES))            \
           --lr=0.001 \

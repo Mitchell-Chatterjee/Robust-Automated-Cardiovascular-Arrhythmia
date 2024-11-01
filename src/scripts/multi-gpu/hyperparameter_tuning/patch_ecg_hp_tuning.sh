@@ -23,7 +23,7 @@ cd /path/to/Masters-Research/ || exit
 # Move data into temp memory for faster processing
 cp -R /path/to/ptb-xl_1.0.3 "$SLURM_TMPDIR"
 
-python    -m src.patchtst_raytune                    \
+python    -m src.patchECG_raytune                    \
           --lr=0.001                                 \
           --save_every=20 \
           --root_path="$SLURM_TMPDIR"/ptb-xl_1.0.3 \
