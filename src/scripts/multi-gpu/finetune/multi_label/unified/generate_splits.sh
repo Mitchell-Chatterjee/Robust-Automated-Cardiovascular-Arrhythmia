@@ -25,7 +25,7 @@ cp -R /path/to/Unified_Dataset "$SLURM_TMPDIR"
 
 for i in {1..10}
 do
-  python    -m src.patchtst_finetune                    \
+  python    -m src.patchECG_finetune                    \
             --lr=0.001                                 \
             --save_every=20 \
             --root_path="$SLURM_TMPDIR"/Unified_Dataset \

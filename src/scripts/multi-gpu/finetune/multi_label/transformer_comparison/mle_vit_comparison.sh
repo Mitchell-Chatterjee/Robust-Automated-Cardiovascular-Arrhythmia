@@ -26,7 +26,7 @@ cp -R /path/to/ptb-xl_1.0.3 "$SLURM_TMPDIR"
 
 for i in {1..10}
 do
-  python    -m src.patchtst_finetune                    \
+  python    -m src.patchECG_finetune                    \
             --lr=0.005                                 \
             --save_every=20 \
             --root_path="$SLURM_TMPDIR"/ptb-xl_1.0.3 \

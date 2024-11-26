@@ -177,7 +177,7 @@ parser.add_argument('--model_name', type=str, default='test', help='name of the 
 
 # Distributed training args
 parser.add_argument('--init_method', default='tcp://127.0.0.1:3456', type=str, help='')
-parser.add_argument('--dist-backend', default='nccl', type=str, help='')
+parser.add_argument('--dist_backend', default='nccl', type=str, help='')
 parser.add_argument('--world_size', default=1, type=int, help='')
 parser.add_argument('--local_node', action=argparse.BooleanOptionalAction, default=False,
                     help='prepares distributed trainer to run on local gpu instead of SLURM workload managed cluster')
