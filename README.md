@@ -45,17 +45,17 @@ In each pre-training batch we include three types of masking to ensure the model
 ***
 
 ## Results on PTB-XL
-![](images/Results on PTB-XL.png)
+![](images/Results_on_PTB-XL.png)
 
 ## Results on Unified Dataset (CINC-2020 and Chapman-Shaoxing Datasets)
-![](images/Results on Unified.png)
+![](images/Results_on_Unified.png)
 
 # Results on STEMI (PTB-XL)
-![](images/Results on STEMI.png)
+![](images/Results_on_STEMI.png)
 
 # Efficiency and Capacity
 ***
-![](images/Model Efficiency.png)
+![](images/Model_Efficiency.png)
 
 
 # Pre-processing
@@ -133,7 +133,7 @@ pre-trained on Ribeiro and applied to the Unified Dataset to test hierarchical p
 
 |             Original             |            Reconstruction             |            Reconstruction Overlayed with Original             |
 |:--------------------------------:|:-------------------------------------:|:-------------------------------------------------------------:|
-| ![](images/Original Epoch=0.png) | ![](images/Reconstructed Epoch=0.png) | ![](images/Reconstructed Overlayed with Original Epoch=0.png) |
+| ![](images/Original_Epoch=0.png) | ![](images/Reconstructed_Epoch=0.png) | ![](images/Reconstructed_Overlayed_with_Original_Epoch=0.png) |
 
 ## Fine-tuning
 ***
