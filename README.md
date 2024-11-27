@@ -24,13 +24,13 @@ from the Ribeiro dataset. The provided foundational model can be fine-tuned to a
 *Overview of PatchECG and Masked Patch Modelling (Only 6 of the original 12 leads are shown due to size constraints). 
 (1) The original ECG signal is broken up into patches of length 50 by default. (2) The signal is partitioned into patches; 
 by default, 40\% of the patches are masked (red), and the rest are left unmasked (blue). (3) Patches are linearly 
-projected to the model dimension $d_{model}$ using a linear embedding. During pre-training, masked patches are replaced 
-with a learnable mask token $\textbf{[\text{M}]}$. They are then fed into the Transformer backbone. (4) The task-specific 
-MLP $g$ is trained to reconstruct the corrupted patches based on the output of the Transformer. (5) The entire signal is 
+projected to the model dimension d<sub>model</sub> using a linear embedding. During pre-training, masked patches are replaced 
+with a learnable mask token **M**. They are then fed into the Transformer backbone. (4) The task-specific 
+MLP __g__ is trained to reconstruct the corrupted patches based on the output of the Transformer. (5) The entire signal is 
 reconstructed from the corrupted input. The difference between an early reconstruction (top) and a late reconstruction 
 (bottom) shows the progress of the PatchECG model in learning a robust representation of ECG data. (6) The pre-trained 
-backbone network is used, without masking, for fine-tuning and inference by replacing the pre-training head $g$ with a 
-new task-specific MLP $f$.*
+backbone network is used, without masking, for fine-tuning and inference by replacing the pre-training head __g__ with a 
+new task-specific MLP __f__.*
 
 ## Multiple types of masking
 In each pre-training batch we include three types of masking to ensure the model learns a robust representation of ECG data
